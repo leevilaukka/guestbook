@@ -13,7 +13,14 @@
     <%- include('partials/header.ejs') %>
     <div class="container">
         <table class="table">
-            
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Message</th>
+                </tr>
+            </thead>
             <tbody>
                 <% messages.forEach(function({username, country, message, id, date}) {%>
                     <tr>
@@ -28,7 +35,7 @@
                         <td class="col message-date">
                             <%= date %>
                         </td>
-
+                        
                         <td class="col-8 message-body">
                             <%= message %>
                         </td>
