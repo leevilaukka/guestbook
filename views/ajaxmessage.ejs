@@ -11,6 +11,9 @@
         window.addEventListener("load", () => {
             const form = document.getElementById('ajaxmessage-form');
             console.log(form)
+            const table = document.getElementById('ajaxmessage-table');
+
+            table.style.display = 'none';
 
             // Form event listener
             form.addEventListener("submit", (e) => {
@@ -29,10 +32,11 @@
                 })
                     .then(response => response.json())
                     .then(data => {
+                        table.style.display = 'block';
 
                         console.log(data)
 
-                        
+
                         data.forEach(post => {
                             //Create row for message
                             const message = document.createElement('tr');
@@ -81,32 +85,45 @@
 
 <body>
     <%- include('partials/header.ejs') %>
-        <form id="ajaxmessage-form">
-            <label for="username-input">Username</label>
-            <input type="text" name="username" id="username-input" placeholder="Username" required>
+        <div class="d-flex justify-content-center align-items-center align-self-center">
+        <form id="ajaxmessage-form" class="d-inline-flex flex-column">
+            <div class="form-group">
+                <label for="username-input">Username</label>
+                <input type="text" class="form-control" name="username" id="username-input" placeholder="Username"
+                    required>
+            </div>
 
-            <label for="country-input">Country</label>
-            <input type="text" name="country" id="country-input" placeholder="Country" required>
+            <div class="form-group">
+                <label for="country-input">Country</label>
+                <input type="text" class="form-control" name="country" id="country-input" placeholder="Country"
+                    required>
+            </div>
 
-            <label for="message-input">Message</label>
-            <textarea type="text" name="message" id="message-input" placeholder="Message" required></textarea>
 
-            <button name="submit" id="submit-button">Send</button>
+            <div class="form-group">
+                <label for="message-input">Message</label>
+                <textarea type="text" class="form-control" name="message" id="message-input" placeholder="Message"
+                    required></textarea>
+            </div>
 
-            <table class="table" >
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Country</th>
-                        <th scope="col">Message</th>
-                        <th scope="col-4">Date</th>
-                    </tr>
-                </thead>
-                <tbody id="messages">
+            <button name="submit" class="btn btn-primary" id="submit-button">Send</button>
+        </form>
+        </div>
 
-                </tbody>
-            </table>
+        <table class="table" id="ajaxmessage-table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Message</th>
+                    <th scope="col-4">Date</th>
+                </tr>
+            </thead>
+            <tbody id="messages">
+
+            </tbody>
+        </table>
         </form>
 </body>
 
